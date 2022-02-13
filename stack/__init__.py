@@ -15,7 +15,20 @@ class Stack():
             
         def __len__(self):
             return self._length
+        
+        def __iter__(self):
+            self.__iter_item = self._head
+            return self
             
+        def __next__(self):
+            if self.head:
+                nxt = self.__iter_item
+                self.pop()
+                self.__iter_item = self._head
+                return nxt
+            else:
+                raise StopIteration
+        
         def push(self, value):
             self._head = Stack_Element(value, self._head)
             self._length += 1
